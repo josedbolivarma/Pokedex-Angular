@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
+import { Pokemon } from '../../interfaces/Pokemon.interface';
 
 @Component({
   selector: 'app-pokedex',
@@ -10,7 +11,7 @@ export class PokedexComponent implements OnInit {
 
   public error:Boolean = false;
   public loading:Boolean = true;
-  public pokemon: object | null = null;
+  public pokemon: Pokemon | any = null;
   public pokemonID: string = Math.floor(Math.random() * 806 + 1).toString();
 
   constructor(
@@ -25,7 +26,7 @@ export class PokedexComponent implements OnInit {
   searchPokemon(): void {
     this._pokemonService.getPokemon( this.pokemonID )
       .subscribe({
-        next: ( data ) => {
+        next: ( data: Pokemon ) => {
           console.log('Data', data );
           this.pokemon = data;
           this.loading = false;
@@ -39,7 +40,7 @@ export class PokedexComponent implements OnInit {
       })
   }
 
-  handleSubmit( pokemonId: any ) {
+  handleSubmit( pokemonId: string ) {
     console.log('Pokemon ID', pokemonId );
     if(pokemonId !== ''){
       this.error = false
