@@ -1,0 +1,31 @@
+<div class="pokedex-screen">
+
+<img
+  *ngIf="error"
+  src="https://static.vecteezy.com/system/resources/previews/005/645/782/original/error-message-in-computer-shocked-woman-sit-at-table-with-monitor-hacking-data-system-cartoon-flat-illustration-office-work-and-freelance-virus-and-bug-problem-with-program-vector.jpg"
+  alt="Hubo un error buscando tu pokemon"
+  class="pokedex-no-screen"
+/>
+
+<img
+  *ngIf="loading && !error"
+  src="http://a.top4top.net/p_1990j031.gif"
+  alt="Aun no hay ningun pokemon"
+  class="pokedex-no-screen"
+/>
+
+<div class="pokemon-info" *ngIf="pokemon && !loading && !error">
+      <h2 class="pokemon-name">{{ pokemon?.name }}</h2>
+      <img class="pokemon-img" src='{{ pokemon?.sprites.front_default }}' alt='{{pokemon?.name}}' />
+      <ul class="pokemon-stats">
+        <app-stat
+          class="pokemon-stat"
+          *ngFor="let item of pokemon?.stats"
+          [item]="item"
+        >
+        </app-stat>
+      </ul>
+    </div>
+  </div>
+
+  

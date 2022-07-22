@@ -1,0 +1,13 @@
+<form class="pokemon-form" (ngSubmit)="handleSubmit( $event )">
+    <input type="text"
+    class="pokemon-input"
+    [(ngModel)]="pokemonId"
+    name="pokemonId"
+    placeholder="Busca tu pokemon"
+    autocomplete="off"
+    >
+
+    <input type='submit'
+        class="pokemon-btn"
+        value="Buscar">
+</form>
